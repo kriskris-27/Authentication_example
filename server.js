@@ -47,7 +47,7 @@ app.post('/users/login', async(req,res)=>{
 
 app.listen(3000,(err)=>{
     if (err){
-        console.log("Error",err);
+        console.log("Error died",err);
         process.exit(1);
     }
     console.log("3000 is alive")
