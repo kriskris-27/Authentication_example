@@ -24,7 +24,26 @@ app.post('/users',async (req,res)=>{
 })
 
 
-app.login
+app.post('/users/login', async(req,res)=>{
+        const user = users.find( user => user.name == req.body.name)
+        console.log(user)
+        if (user== null){
+            return res.status(400).send('Cannot find user')
+        }
+    try{
+        if(await bcrypt.compare(req.body.password,user.password)){
+            res.status(201).send("Login successful")
+        }
+        else{
+            res.send("Not Allowed")
+        }
+        
+    }catch(err){
+        res.status(500).send("Error sending",err)
+        console.log(err)
+    }
+})
+
 
 app.listen(3000,(err)=>{
     if (err){
